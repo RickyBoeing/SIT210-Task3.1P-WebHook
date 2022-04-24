@@ -1,0 +1,20 @@
+
+#include "Adafruit_DHT.h"
+#define DHTPIN 2
+#define DHTTYPE DHT11
+
+int temperature;
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() 
+{
+     dht.begin();
+}
+
+void loop() {
+  temperature = dht.getTempFarenheit();
+  Particle.publish("temperature", String(temperature), PRIVATE);
+
+  delay(30000);
+}
